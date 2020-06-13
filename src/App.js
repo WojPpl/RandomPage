@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
 import PageSection from "./components/PageSection";
+import { initialSectionsData } from "./mockData/initialData"
 
 class App extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class App extends React.Component {
             activeColor: "#fa9002",
             fontColor: "#71777b",
             activeSection: null,
-
+            sectionData: initialSectionsData
         };
     }
 
@@ -28,9 +29,10 @@ class App extends React.Component {
         return (
             <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
                 <div style={{width: "calc(100% - 350px", fontFamily: this.state.currentFont, color: this.state.fontColor}}>
-                    <PageSection grid={1} active={true} contentSize={this.state.paragraphSize} headerSize={this.state.headerSize}/>
-                    <PageSection grid={4} contentSize={this.state.paragraphSize} headerSize={this.state.headerSize}/>
-                    <PageSection grid={2} contentSize={this.state.paragraphSize} headerSize={this.state.headerSize}/>
+                    {this.state.sectionData.map((section, index) => (
+                        <PageSection configData={section} contentSize={this.state.paragraphSize} headerSize={this.state.headerSize} activeColor={this.state.activeColor} sectionId={index}/>
+                        )
+                    )}
                 </div>
                 <div style={{width: "349px", padding: "20px", borderLeft: "1px solid #cccccc", fontFamily: "Kalam"}}>
                     <img src={"/images/logo.jpg"}/>
@@ -53,11 +55,11 @@ class App extends React.Component {
                     </div>
                     <div>
                         <h5>Header size:</h5>
-                        <input type={"number"}/>
+                        <input type={"number"} value={this.state.headerSize} onChange={(el)=>{changeFontSize(el.target.value, true)}}/>
                     </div>
                     <div>
                         <h5>Paragraph size:</h5>
-                        <input type={"number"}/>
+                        <input type={"number"} value={this.state.paragraphSize} onChange={(el)=>{changeFontSize(el.target.value)}}/>
                     </div>
                     <div style={{height: "1px", width: "100%", background: "#ccc", margin: "20px 0"}}>&nbsp;</div>
                     <div>
