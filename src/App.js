@@ -1,7 +1,10 @@
 import React from 'react';
 import './App.css';
 import PageSection from "./components/PageSection";
-import { initialSectionsData } from "./mockData/initialData"
+import { initialSectionsData } from "./mockData/initialData";
+import monochromeTable from "./mockData/monochromeTable";
+import colorTable from "./mockData/colorTable";
+import ColorButtons from "./components/ColorButtons";
 
 class App extends React.Component {
     constructor(props) {
@@ -10,8 +13,8 @@ class App extends React.Component {
             currentFont: "OpenSans",
             headerSize: 22,
             paragraphSize: 14,
-            activeColor: "#fa9002",
-            fontColor: "#71777b",
+            activeColor: "#f4511e",
+            fontColor: "#808080",
             activeSection: null,
             sectionData: initialSectionsData
         };
@@ -24,6 +27,10 @@ class App extends React.Component {
 
         const changeFontSize = (newSize, isHeader) => {
             isHeader ? this.setState({headerSize: newSize}) : this.setState({paragraphSize: newSize})
+        }
+
+        const changeColor = (color, themeElement) => {
+            themeElement === "font" ? this.setState({fontColor: color}) : this.setState({activeColor: color})
         }
 
         return (
@@ -39,6 +46,7 @@ class App extends React.Component {
                     <h4>General customisation:</h4>
                     <div>
                         <h5>Theme active color:</h5>
+                        <ColorButtons colors={colorTable} changeFunction={changeColor}/>
                     </div>
                     <div>
                         <h5>Theme font:</h5>
@@ -51,23 +59,42 @@ class App extends React.Component {
                             <option value={"Montserrat"}>Monserrat</option>
                             <option value={"Museo"}>Museo</option>
                             <option value={"Dosis"}>Dosis</option>
+                            <option value={"Piedra"}>Piedra</option>
+                            <option value={"Roboto"}>Roboto</option>
+                            <option value={"Rubik"}>Rubik</option>
+                            <option value={"Sacramento"}>Sacramento</option>
+                            <option value={"Sriracha"}>Sriracha</option>
+                            <option value={"Amatic SC"}>Amatic SC</option>
+                            <option value={"Balsamiq Sans"}>Balsamiq Sans</option>
+                            <option value={"Dancing Script"}>Dancing Script</option>
+                            <option value={"Gloria Hallelujah"}>Gloria Hallelujah</option>
+                            <option value={"Libre Baskerville"}>Libre Baskerville</option>
+                            <option value={"Roboto Slab"}>Roboto Slab</option>
+                            <option value={"Metal Mania"}>Metal Mania</option>
+                            <option value={"Yanone Kaffeesatz"}>Yanone Kaffeesatz</option>
                         </select>
+                    </div>
+                    <div>
+                        <h5>Theme font color:</h5>
+                        <ColorButtons colors={monochromeTable} changeFunction={changeColor} forFont={true}/>
                     </div>
                     <div>
                         <h5>Header size:</h5>
                         <input type={"number"} value={this.state.headerSize} onChange={(el)=>{changeFontSize(el.target.value, true)}}/>
                     </div>
                     <div>
-                        <h5>Paragraph size:</h5>
+                        <h5>Text size:</h5>
                         <input type={"number"} value={this.state.paragraphSize} onChange={(el)=>{changeFontSize(el.target.value)}}/>
                     </div>
                     <div style={{height: "1px", width: "100%", background: "#ccc", margin: "20px 0"}}>&nbsp;</div>
+
+                    <h4>Section customisation:</h4>
                     <div>
                         <h5>Grid:</h5>
                         <input type={"number"}/>
                     </div>
                     <div>
-                        <h5>Active content:</h5>
+                        <h5>Chose active content:</h5>
                         <p>
                             <label><input type="checkbox"/>Banner</label>
                             <label><input type="checkbox"/>Heading</label>
