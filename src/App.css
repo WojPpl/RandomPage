@@ -32,11 +32,71 @@
   src: url("fonts/MuseoModerno-Regular.ttf");
 }
 
-
 @font-face {
   font-family: Dosis;
   src: url("fonts/Dosis-Regular.ttf");
 }
+
+@font-face {
+  font-family:Piedra;
+  src: url("fonts/Piedra-Regular.ttf");
+}
+
+@font-face {
+  font-family:Roboto;
+  src: url("fonts/Roboto-Regular.ttf");
+}
+
+@font-face {
+  font-family:Rubik;
+  src: url("fonts/Rubik-Regular.ttf");
+}
+
+@font-face {
+  font-family:Sacramento;
+  src: url("fonts/Sacramento-Regular.ttf");
+}
+
+@font-face {
+  font-family:Sriracha;
+  src: url("fonts/Sriracha-Regular.ttf");
+}
+
+@font-face {
+  font-family:Amatic SC;
+  src: url("fonts/AmaticSC-Regular.ttf");
+}
+
+@font-face {
+  font-family:Balsamiq Sans;
+  src: url("fonts/BalsamiqSans-Regular.ttf");
+}
+
+@font-face {
+  font-family:Gloria Hallelujah;
+  src: url("fonts/GloriaHallelujah-Regular.ttf");
+}
+
+@font-face {
+  font-family:Libre Baskervil;
+  src: url("fonts/LibreBaskerville-Regular.ttf");
+}
+
+@font-face {
+  font-family:Metal Mania;
+  src: url("fonts/MetalMania-Regular.ttf");
+}
+
+@font-face {
+  font-family:Roboto Sl;
+  src: url("fonts/RobotoSlab-Regular.ttf");
+}
+
+@font-face {
+  font-family:Yanone Kaffeesatz;
+  src: url("fonts/YanoneKaffeesatz-Regular.ttf");
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
