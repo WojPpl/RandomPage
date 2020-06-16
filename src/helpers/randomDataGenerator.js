@@ -1,3 +1,5 @@
+import {initialSectionsData} from "../mockData/initialData";
+
 const randomInt = (min, max) => {
     return min + Math.floor((max - min) * Math.random());
 }
@@ -22,4 +24,40 @@ const randomContent = (data, type) => {
     }
 }
 
-export default randomContent
+const randomGrid = () => {
+   return randomInt(1, 8);
+}
+
+const randomBool = () => {
+    let randomNumber = randomInt(0, 5);
+    return randomNumber<=2 ? false : true
+}
+
+const randomAll = (sections, fonts, colors, monoColors) => {
+    let sectionData = [];
+    sections.map((section, index) => {
+        sectionData.push({
+            id: index,
+            grid: randomGrid(),
+            banner: randomBool(),
+            heading: randomBool(),
+            image: randomBool(),
+            paragraph: randomBool(),
+            button: randomBool(),
+            link: randomBool()
+        })
+    });
+
+    let returnData = {
+        currentFont: fonts[randomInt(0, 18)],
+        headerSize: randomInt(14, 42),
+        paragraphSize: randomInt(8, 22),
+        activeColor: colors[randomInt(0, 14)],
+        fontColor: monoColors[randomInt(0, 14)],
+        sectionData: sectionData
+    };
+    return returnData
+}
+
+
+export {randomContent, randomAll}

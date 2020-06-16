@@ -5,6 +5,8 @@ import {initialSectionsData} from "./mockData/initialData";
 import monochromeTable from "./mockData/monochromeTable";
 import colorTable from "./mockData/colorTable";
 import ColorButtons from "./components/ColorButtons";
+import fontsTable from "./mockData/fontsTable";
+import {randomAll} from "./helpers/randomDataGenerator";
 
 class App extends React.Component {
     constructor(props) {
@@ -57,6 +59,13 @@ class App extends React.Component {
             }));
         }
 
+        const randomContent = () => {
+            let newState = randomAll(initialSectionsData,fontsTable,colorTable,monochromeTable);
+            console.log("Aaaa");
+            console.log(newState);
+            this.setState(newState)
+        }
+
         return (
             <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
                 <div style={{
@@ -83,26 +92,7 @@ class App extends React.Component {
                         <h5>Theme font:</h5>
                         <select onChange={(el) => {
                             changeFont(el.target.value)
-                        }}>
-                            <option value={"OpenSans"}>Open sans</option>
-                            <option value={"Kalam"}>Kalam</option>
-                            <option value={"Lora"}>Lora</option>
-                            <option value={"Montserrat"}>Monserrat</option>
-                            <option value={"Museo"}>Museo</option>
-                            <option value={"Dosis"}>Dosis</option>
-                            <option value={"Piedra"}>Piedra</option>
-                            <option value={"Roboto"}>Roboto</option>
-                            <option value={"Rubik"}>Rubik</option>
-                            <option value={"Sacramento"}>Sacramento</option>
-                            <option value={"Sriracha"}>Sriracha</option>
-                            <option value={"Amatic SC"}>Amatic SC</option>
-                            <option value={"Balsamiq Sans"}>Balsamiq Sans</option>
-                            <option value={"Dancing Script"}>Dancing Script</option>
-                            <option value={"Gloria Hallelujah"}>Gloria Hallelujah</option>
-                            <option value={"Libre Baskerville"}>Libre Baskerville</option>
-                            <option value={"Roboto Slab"}>Roboto Slab</option>
-                            <option value={"Metal Mania"}>Metal Mania</option>
-                            <option value={"Yanone Kaffeesatz"}>Yanone Kaffeesatz</option>
+                        }}>{fontsTable.map((font, index) => (<option value={font} key={index}>{font}</option>))}
                         </select>
                     </div>
                     <div>
@@ -144,7 +134,7 @@ class App extends React.Component {
                         <div style={{height: "1px", width: "100%", background: "#ccc", margin: "20px 0"}}>&nbsp;</div>
                     </div>}
                     <div style={{textAlign: "center"}}>
-                        <button style={{textAlign: "center"}}>Random all !!</button>
+                        <button style={{textAlign: "center"}} onClick={() =>{randomContent()}}>Random all !!</button>
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {contentData} from "../mockData/initialData";
-import randomContent from "../helpers/randomDataGenerator"
+import {randomContent} from "../helpers/randomDataGenerator"
 
 class PageSection extends React.Component {
     constructor(props){
