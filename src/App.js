@@ -16,7 +16,7 @@ class App extends React.Component {
             activeColor: "#f4511e",
             fontColor: "#808080",
             activeSection: null,
-            sectionData: initialSectionsData
+            sectionData: initialSectionsData,
         };
     }
 
@@ -33,11 +33,21 @@ class App extends React.Component {
             themeElement === "font" ? this.setState({fontColor: color}) : this.setState({activeColor: color})
         }
 
+        const activateSection = async id => {
+            await this.setState({activeSection: id});
+        }
+
         return (
             <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
-                <div style={{width: "calc(100% - 350px", fontFamily: this.state.currentFont, color: this.state.fontColor}}>
+                <div style={{
+                    width: "calc(100% - 350px)",
+                    fontFamily: this.state.currentFont,
+                    color: this.state.fontColor
+                }}>
                     {this.state.sectionData.map((section, index) => (
-                        <PageSection configData={section} contentSize={this.state.paragraphSize} headerSize={this.state.headerSize} activeColor={this.state.activeColor} sectionId={index}/>
+                            <PageSection configData={section} contentSize={this.state.paragraphSize}
+                                         headerSize={this.state.headerSize} activeColor={this.state.activeColor} selectFunction={activateSection}
+                                         id={index} active={this.state.activeSection}/>
                         )
                     )}
                 </div>
