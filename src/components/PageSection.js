@@ -33,7 +33,7 @@ class PageSection extends React.Component {
         }
 
         const boxStyle = {padding: "10px"};
-        const containerStyle = {minHeight: "33.33vh", display: "flex", flexDirection: "row", flexWrap: "nowrap", cursor: "pointer"};
+        const containerStyle = {display: "flex", flexDirection: "row", flexWrap: "nowrap", cursor: "pointer"};
 
         return (
             <div style={this.state.active ? {...containerStyle, background: "rgba(0,0,0,0.03)"} : {...containerStyle}} onClick={()=>handleSelect(this.props.id)}>

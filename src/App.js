@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import PageSection from "./components/PageSection";
-import { initialSectionsData } from "./mockData/initialData";
+import {initialSectionsData} from "./mockData/initialData";
 import monochromeTable from "./mockData/monochromeTable";
 import colorTable from "./mockData/colorTable";
 import ColorButtons from "./components/ColorButtons";
@@ -37,6 +37,26 @@ class App extends React.Component {
             await this.setState({activeSection: id});
         }
 
+        const changeGrid = newGrid => {
+            this.setState(prevState => ({
+                sectionData: prevState.sectionData.map(
+                    obj => (obj.id === this.state.activeSection ? Object.assign(obj, { grid: newGrid }) : obj)
+                )
+            }));
+        }
+
+        const changeOption = (option, isActive) => {
+
+            let updateObj = {};
+            updateObj[option] = isActive;
+
+           this.setState(prevState => ({
+                sectionData: prevState.sectionData.map(
+                    obj => (obj.id === this.state.activeSection ? Object.assign(obj, updateObj) : obj)
+                )
+            }));
+        }
+
         return (
             <div style={{display: "flex", flexDirection: "row", flexWrap: "nowrap"}}>
                 <div style={{
@@ -46,7 +66,8 @@ class App extends React.Component {
                 }}>
                     {this.state.sectionData.map((section, index) => (
                             <PageSection configData={section} contentSize={this.state.paragraphSize}
-                                         headerSize={this.state.headerSize} activeColor={this.state.activeColor} selectFunction={activateSection}
+                                         headerSize={this.state.headerSize} activeColor={this.state.activeColor}
+                                         selectFunction={activateSection}
                                          id={index} active={this.state.activeSection} key={index}/>
                         )
                     )}
@@ -90,33 +111,38 @@ class App extends React.Component {
                     </div>
                     <div>
                         <h5>Header size:</h5>
-                        <input type={"number"} value={this.state.headerSize} onChange={(el)=>{changeFontSize(el.target.value, true)}}/>
+                        <input type={"number"} value={this.state.headerSize} onChange={(el) => {
+                            changeFontSize(el.target.value, true)
+                        }}/>
                     </div>
                     <div>
                         <h5>Text size:</h5>
-                        <input type={"number"} value={this.state.paragraphSize} onChange={(el)=>{changeFontSize(el.target.value)}}/>
+                        <input type={"number"} value={this.state.paragraphSize} onChange={(el) => {
+                            changeFontSize(el.target.value)
+                        }}/>
                     </div>
                     <div style={{height: "1px", width: "100%", background: "#ccc", margin: "20px 0"}}>&nbsp;</div>
 
-                    <h4>Section customisation:</h4>
+                    {this.state.activeSection != null &&
                     <div>
-                        <h5>Grid:</h5>
-                        <input type={"number"}/>
-                    </div>
-                    <div>
-                        <h5>Chose active content:</h5>
-                        <p>
-                            <label><input type="checkbox"/>Banner</label>
-                            <label><input type="checkbox"/>Heading</label>
-                            <label><input type="checkbox"/>Image</label>
-                        </p>
-                        <p>
-                            <label><input type="checkbox"/>Paragraph</label>
-                            <label><input type="checkbox"/>Button</label>
-                            <label><input type="checkbox"/>Link</label>
-                        </p>
-                    </div>
-                    <div style={{height: "1px", width: "100%", background: "#ccc", margin: "20px 0"}}>&nbsp;</div>
+                        <h4>Section customisation:</h4>
+                        <div>
+                            <h5>Grid:</h5>
+                            <input type={"number"} name={"grid"} value={this.state.sectionData[this.state.activeSection].grid} onChange={(el)=>{changeGrid(el.target.value)}}/>
+                        </div>
+                        <div>
+                            <h5>Chose active content:</h5>
+                            <p style={{display: "flex", flexDirection: "row", flexWrap: "wrap"}}>
+                                    <label style={{flexBasis: "33%"}}><input type="checkbox" value={"banner"} checked={this.state.sectionData[this.state.activeSection].banner} style={{cursor: "pointer"}} onChange={el=>{changeOption(el.target.value,el.target.checked)}}/>Banner</label>
+                                    <label style={{flexBasis: "33%"}}><input type="checkbox" value={"heading"} checked={this.state.sectionData[this.state.activeSection].heading} style={{cursor: "pointer"}} onChange={el=>{changeOption(el.target.value,el.target.checked)}}/>Heading</label>
+                                    <label style={{flexBasis: "33%"}}><input type="checkbox" value={"image"} checked={this.state.sectionData[this.state.activeSection].image} style={{cursor: "pointer"}} onChange={el=>{changeOption(el.target.value,el.target.checked)}}/>Image</label>
+                                    <label style={{flexBasis: "33%"}}><input type="checkbox" value={"paragraph"} checked={this.state.sectionData[this.state.activeSection].paragraph} style={{cursor: "pointer"}} onChange={el=>{changeOption(el.target.value,el.target.checked)}}/>Paragraph</label>
+                                    <label style={{flexBasis: "33%"}}><input type="checkbox" value={"button"} checked={this.state.sectionData[this.state.activeSection].button} style={{cursor: "pointer"}} onChange={el=>{changeOption(el.target.value,el.target.checked)}}/>Button</label>
+                                    <label style={{flexBasis: "33%"}}><input type="checkbox" value={"link"} checked={this.state.sectionData[this.state.activeSection].link} style={{cursor: "pointer"}} onChange={el=>{changeOption(el.target.value,el.target.checked)}}/>Link</label>
+                            </p>
+                        </div>
+                        <div style={{height: "1px", width: "100%", background: "#ccc", margin: "20px 0"}}>&nbsp;</div>
+                    </div>}
                     <div style={{textAlign: "center"}}>
                         <button style={{textAlign: "center"}}>Random all !!</button>
                     </div>

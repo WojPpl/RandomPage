@@ -1,5 +1,6 @@
 const initialSectionsData = [
     {
+        id: 0,
         grid: 1,
         banner: true,
         heading: false,
@@ -9,6 +10,7 @@ const initialSectionsData = [
         link: false
     },
     {
+        id: 1,
         grid: 4,
         banner: false,
         heading: true,
@@ -18,6 +20,7 @@ const initialSectionsData = [
         link: false
     },
     {
+        id: 2,
         grid: 2,
         banner: false,
         heading: true,
