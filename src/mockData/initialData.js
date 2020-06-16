@@ -6,8 +6,7 @@ const initialSectionsData = [
         image: false,
         paragraph: false,
         button: false,
-        link: false,
-        headerIcons: false
+        link: false
     },
     {
         grid: 4,
@@ -16,8 +15,7 @@ const initialSectionsData = [
         image: false,
         paragraph: true,
         button: true,
-        link: false,
-        headerIcons: false
+        link: false
     },
     {
         grid: 2,
@@ -26,8 +24,7 @@ const initialSectionsData = [
         image: true,
         paragraph: false,
         button: false,
-        link: true,
-        headerIcons: true
+        link: true
     }
 ];
 

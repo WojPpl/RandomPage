@@ -47,7 +47,7 @@ class App extends React.Component {
                     {this.state.sectionData.map((section, index) => (
                             <PageSection configData={section} contentSize={this.state.paragraphSize}
                                          headerSize={this.state.headerSize} activeColor={this.state.activeColor} selectFunction={activateSection}
-                                         id={index} active={this.state.activeSection}/>
+                                         id={index} active={this.state.activeSection} key={index}/>
                         )
                     )}
                 </div>
